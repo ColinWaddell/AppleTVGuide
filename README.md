@@ -112,6 +112,7 @@ Your going to be using SSH quite a bit from now on. Access is gained using the c
 The default password is `frontrow`
 
 
+![SSH](https://raw.github.com/ColinWaddell/AppleTVGuide/master/readme_img/ssh.png)
 
 
 
@@ -540,7 +541,7 @@ Transmission can now be ran again:
 
 Transmission is access by pointing your browser at `http://appletv.local:9091/transmission/web/`
 
-
+![SSH](https://raw.github.com/ColinWaddell/AppleTVGuide/master/readme_img/tranmission.png)
 
 
 
