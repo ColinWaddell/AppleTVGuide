@@ -13,3 +13,5 @@ One last thing. I am hosting all the recommended downloads. This is due to a dif
 The Apple TV outputs in component video and HDMI. If you have a tv which requires a composite source (i.e. the video input on your TV just comes via one cable) then your going to have to be patient with a black and white picture for a few more steps.
 
 To get an image on your screen from your Apple TV you need to connect a cable from the green (luma) component output to your yellow composite input and select 480i as the resolution for [http://en.wikipedia.org/wiki/NTSC](NTSC) or 576i for [http://en.wikipedia.org/wiki/PAL](PAL) (or else it will flicker).
+
+![Compisite TV Connector](https://raw.github.com/ColinWaddell/AppleTVGuide/master/readme_img/composite.jpg)
