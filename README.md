@@ -126,10 +126,10 @@ From the [Nito Wiki](from http://wiki.awkwardtv.org/wiki/NitoTV)
 
 There have been a number of reports of people getting the ‘wrong permissions or owners to work properly’ screen while using the smart installer with Nito 0.2.7 and after. A good fix is to SSH into the AppleTV and run the following:
  
->    cd /System/Library/CoreServices/Finder.app/
->    Contents/PlugIns/nitoTV.frappliance/Contents/Resources/
->    sudo chmod 755 nitoHelper
->    sudo chmod u+s nitoHelper
+    cd /System/Library/CoreServices/Finder.app/
+    Contents/PlugIns/nitoTV.frappliance/Contents/Resources/
+    sudo chmod 755 nitoHelper
+    sudo chmod u+s nitoHelper
 
 
 Running Smart Installer is as simple as getting your remote and pointing your Apple TV in the direction of Nito TV->Settings->Install Software->Smart Installer. Then let it do its thing."
