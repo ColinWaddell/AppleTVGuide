@@ -132,6 +132,6 @@ There have been a number of reports of people getting the ‘wrong permissions o
     sudo chmod u+s nitoHelper
 
 
-Running Smart Installer is as simple as getting your remote and pointing your Apple TV in the direction of Nito TV->Settings->Install Software->Smart Installer. Then let it do its thing."
+Running Smart Installer is as simple as getting your remote and pointing your Apple TV in the direction of Nito TV→Settings→Install Software→Smart Installer. Then let it do its thing.
 
 
