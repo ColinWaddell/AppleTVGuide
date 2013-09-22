@@ -29,3 +29,12 @@ Get the software to download the latest firmware. Plug in your USB key. Hit `cre
 If the patch stick software is having issues with downloading the dmg is requires then a list of firmware versions is held at [http://www.iclarified.com/entry/index.php?enid=970](iClarified) with links to downloads from the apple website. I went for version 3.0.2
 
 Also, not all USB keys work. If you plug it in and switch on the Apple TV and nothing happens then try another key.
+
+
+# SSH Access
+
+Your going to be using SSH quite a bit from now on. Access is gained using the command
+
+    ssh frontrow@appletv.local
+
+The default password is `frontrow`
