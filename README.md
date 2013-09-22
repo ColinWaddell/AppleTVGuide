@@ -296,7 +296,7 @@ so I'm going to change that to now say this:
     writable = yes
     printable = no
 
-Save and exit.
+Press `Ctrl-X` to exit Nano and hit `Y` to save the changes.
 
 The SAMBA passwords are different from the user login ones. Give the user frontrow a password:
 
@@ -319,9 +319,206 @@ Scroll to the bottom and add the following text:
     /opt/local/sbin/smbd -c /opt/local/etc/samba3/smb.conf
     /opt/local/sbin/nmbd -c /opt/local/etc/samba3/smb.conf
 
-Save, exit, restart.
+Press `Ctrl-X` to exit Nano and hit `Y` to save the changes, then restart the ATV `sudo reboot`.
 
 From a Mac, to access this share, open finder and either hit `cmd+K` or go to `Go → Connect to Server`
 
 In the server address box pop this in there: `smb://AppleTV.local/Downloads` hit Connect, and hopefully a window will
 pop up showing you the contents of your Downloads folder.
+
+
+
+
+
+
+
+
+# SABNZB Usenet Client
+
+I’ve had good results using SABNZB as my Usenet client. Its web interface makes it perfect for the apple tv. My
+instructions are a slightly streamlined version of those on [AwkwardTV](http://wiki.awkwardtv.org/wiki/SABnzbd)
+
+SSH into your Apple TV and run the following commands:
+
+    cd /tmp/
+    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/SABnzbd-0.5.6-osx.dmg
+    hdiutil mount SABnzbd-0.5.6-osx.dmg
+    cp -R /Volumes/SABnzbd/SABnzbd.app/ /Applications/SABnzbd.app/
+
+Next we need to make some slight modifications to the configuration.
+
+Using Nano we need to add a line to a file, from the Apple TVs command line type
+
+    nano -w /Applications/SABnzbd.app/Contents/Info.plist
+
+Scroll down till you find the section which reads:
+
+    <key>LSHasLocalizedDisplayName</key>
+    <false/>
+    <key>NSAppleScriptEnabled</key>
+    <false/>
+
+And change it to the following
+
+    <key>LSHasLocalizedDisplayName</key>
+    <false/>
+    <key>LSUIElement</key>
+     <string>1</string>
+    <key>NSAppleScriptEnabled</key>
+    <false/>
+
+Press `Ctrl-X` to exit Nano and hit `Y` to save the changes.
+
+The second alteration we need to make it to create a configuration file, run the command:
+
+    nano -w /Applications/SABnzbd.app/Contents/Resources/sabnzbd.ini
+
+Copy and Paste the following into the file:
+
+    [misc]
+    autobrowser = 0
+    host = appletv.local
+
+Save and exit.
+
+SABNZB can then be ran using the command:
+
+    open /Applications/SABnzbd.app/
+
+To access SABNZB you just have to point your browser at `http://appletv.local:8080/sabnzbd/`
+
+
+
+
+
+
+
+
+# Starting SABnzbd Automatically on Boot
+
+This was a slight nightmare to get working. Started following this guide but it doesnt work. If you google about you’ll
+find a couple other methods to launch it, like using rc.local, they dont work either.
+
+These instructions, however, are gold.
+
+The trick is to get SABnzbd to launch once the frontrow profile is loading. Thats why the all the instructions on the
+net don't work. This may have something to do with SABnzbd having been updated after the instructions were written
+(and subsequently copy+pasted from forum to forum).
+
+Here we go, ssh in and run these commands:
+
+    mkdir /Users/frontrow/Library/LaunchAgents/
+    nano -w /Users/frontrow/Library/LaunchAgents/sabnzbd.plist
+
+copy and paste the following into the file:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" 
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+    <key>GroupName</key>
+    <string>frontrow</string>
+    <key>Label</key>
+    <string>org.m0k.sabcheck</string>
+    <key>ProgramArguments</key>
+    <array>
+    <string>/Users/frontrow/SABcheck.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>ServiceDescription</key>
+    <string>sabcheck</string>
+    <key>UserName</key>
+    <string>frontrow</string>
+    </dict>
+    </plist>
+
+Save and exit the file: `Ctrl-X` and `Y`.
+
+Next we need to make a script to check if SABnzbd is running, and if not, launch it. From the terminal enter the following commands:
+
+    touch /Users/frontrow/SABcheck.sh 
+    chmod +x /Users/frontrow/SABcheck.sh
+    nano -w /Users/frontrow/SABcheck.sh
+
+then copy & paste this into the file:
+
+    #!/bin/sh
+    if ! ps -auxwww | grep -v grep | grep SABnzbd > /dev/null
+    then
+    open /Applications/SABnzbd.app &
+    fi
+
+Save and Exit. Your now done, restart your Apple TV and see if it has worked.
+
+
+
+
+
+
+
+
+# Transmission Bittorrent Client
+
+It has been a long road trying to find a good bit torrent client for the Apple TV and I am very pleased with the
+results Ive had from running Transmission. Its web interface is wonderful.
+
+First thing to get out the way is an acknowledgement to lfroen who I stumbled across via google. He has managed to
+recompile Transmission for the Apple TV and even included the libcurl library in the process so you dont need to
+install it separately. I have rehosted the files he made as I wanted to include another directory along with them.
+If anyone has any issues with their content getting re-used in this way please contact me asap and Ill get it all
+sorted, Ive only hosted the files myself out of sake of convenience for this guide.
+
+Also, a few of the other instructions are again from
+[AwkwardTV](http://wiki.awkwardtv.org/wiki/Transmission_on_AppleTV) but condensed.
+
+Here we go….
+
+First thing to do is SSH into the Apple TV and run the following commands. This will download and install transmission.
+
+    cd /tmp/
+    wget http://colinwaddell.com/appletv/transmission-1.75-appletv-web.tgz
+    tar xzvf transmission-1.75-appletv-web.tgz
+    cd transmission-1.75-appletv-web
+    sudo mv transmission-daemon transmission-remote /usr/sbin/
+
+next we need to run transmission briefly to allow it to create its configuration files
+
+    transmission-daemon -f
+
+Then once its output has settled exit by typing `Ctrl-C`.
+
+Next we need to make a couple of slight alterations to a settings file. From the Apple TV command line type:
+
+    nano -w /Users/frontrow/Library/Application Support/transmission-daemon/settings.json
+
+Your going to have to let transmission allow you to access it from inside your network. The network addresses in most
+home networks have the form `192.168.*.*` so find the line that reads:
+
+    “rpc-whitelist”: “127.0.0.1”,
+
+and alter it so that it says:
+
+    “rpc-whitelist”: “127.0.0.1,192.168.*.*”,
+
+Save and exit.
+
+Last thing that needs done is its web interface files need moved into place. Enter the following command:
+
+    mv /tmp/transmission-1.75-appletv-web/web /Users/frontrow/Library/Application Support/transmission-daemon/web
+
+Transmission can now be ran again:
+
+    transmission-daemon -f
+
+Transmission is access by pointing your browser at `http://appletv.local:9091/transmission/web/`
+
+
+
+
+
+
+
+
+
