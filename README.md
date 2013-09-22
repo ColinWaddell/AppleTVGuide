@@ -1,7 +1,7 @@
 # About This Guide
 
-I wrote this guide a long long time ago. The way it's written really makes me cringe now (it's a bit chatty), and my
-grammar really needs a good going over. Other than that though, it's really helped a lot of people. I'm redesigning my
+I wrote this guide a long long time ago for my ATV version 1. The way it's written really makes me cringe now (it's a bit chatty), and my
+grammar really needs a good going over. Other than that though it's really helped a lot of people. I'm redesigning my
 personal website and wasn't too sure where to put this guide so I'm going to keep it maintained via GitHub.
 
 > 1.  [Introduction](#introduction)
