@@ -123,9 +123,9 @@ From the [Nito Wiki](from http://wiki.awkwardtv.org/wiki/NitoTV)
 > The smart installer will also take care of Turbo’s easy USB patching (not done prior to 0.2.5b9) A reboot will be required for this to take effect.
 > 
 > Last but not least, the Smart Installer will fix any problems with the /etc/rc.local files not created by the prior version (b8) and add the necessary kexts and the kextloader.
-> 
-> There have been a number of reports of people getting the ‘wrong permissions or owners to work properly’ screen while using the smart installer with Nito 0.2.7 and after. A good fix is to SSH into the AppleTV and run the following:
-> 
+
+There have been a number of reports of people getting the ‘wrong permissions or owners to work properly’ screen while using the smart installer with Nito 0.2.7 and after. A good fix is to SSH into the AppleTV and run the following:
+ 
 >    cd /System/Library/CoreServices/Finder.app/
 >    Contents/PlugIns/nitoTV.frappliance/Contents/Resources/
 >    sudo chmod 755 nitoHelper
