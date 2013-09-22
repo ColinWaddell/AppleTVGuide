@@ -15,7 +15,7 @@ this sort of thing, if you don’t know what your doing then please don’t try 
 One last thing. I am hosting all the recommended downloads. This is due to a difficulty not long ago with sourcing the
 Samba packages after the files dropped offline. I feel like as long as I’ve got a working copy of all the recommended
 files here then this problem won’t arise again. If however you feel that I shouldn’t be hosting other peoples (or your
-    own) content, please let me know asap and I’ll have it sorted in a jiffy.
+own) content, please let me know asap and I’ll have it sorted in a jiffy.
 
 
 
@@ -27,7 +27,7 @@ files here then this problem won’t arise again. If however you feel that I sho
 # Do You Have A Composite TV?
 
 The Apple TV outputs in component video and HDMI. If you have a tv which requires a composite source (i.e. the video
-    input on your TV just comes via one cable) then your going to have to be patient with a black and white picture for
+input on your TV just comes via one cable) then your going to have to be patient with a black and white picture for
 a few more steps.
 
 To get an image on your screen from your Apple TV you need to connect a cable from the green (luma) component output to
@@ -189,13 +189,13 @@ SSH into your Apple TV and do the following
 
 For [PAL](http://en.wikipedia.org/wiki/PAL):
 
-    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/tvcomposite_pal.sh
+    wget --no-check-certificate https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/tvcomposite_pal.sh
     chmod +x tvcomposite_pal.sh
     sudo ./tvcomposite_pal.sh
 
 For [NTSC](http://en.wikipedia.org/wiki/NTSC):
 
-    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/tvcomposite_ntsc.sh
+    wget --no-check-certificate https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/tvcomposite_ntsc.sh
     chmod +x tvcomposite_ntsc.sh 
     sudo ./tvcomposite_ntsc.sh
 
@@ -215,7 +215,7 @@ Next thing to install is the XBMC/Boxee Launcher.
 SSH into your AppleTV and copy and paste the following commands into your terminal.
 
     cd /tmp/    
-    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/Launcher-3.2.2-debug.run    
+    wget --no-check-certificate https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/Launcher-3.2.2-debug.run    
     chmod +x Launcher-3.2.2-debug.run    
     ./Launcher-3.2.2-debug.run
 
@@ -271,7 +271,7 @@ SSH into your Apple TV and run the following:
 
     sudo -s
     cd /tmp
-    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/samba3_macports_bin.tar.bz2
+    wget --no-check-certificate https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/samba3_macports_bin.tar.bz2
     tar -xvjpf samba3_macports_bin.tar.bz2 -C /
     mkdir /mnt/op
     ln -s /mnt/opt /opt
@@ -341,7 +341,7 @@ instructions are a slightly streamlined version of those on [AwkwardTV](http://w
 SSH into your Apple TV and run the following commands:
 
     cd /tmp/
-    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/SABnzbd-0.5.6-osx.dmg
+    wget --no-check-certificate https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/SABnzbd-0.5.6-osx.dmg
     hdiutil mount SABnzbd-0.5.6-osx.dmg
     cp -R /Volumes/SABnzbd/SABnzbd.app/ /Applications/SABnzbd.app/
 
@@ -478,7 +478,7 @@ Here we go….
 First thing to do is SSH into the Apple TV and run the following commands. This will download and install transmission.
 
     cd /tmp/
-    wget http://colinwaddell.com/appletv/transmission-1.75-appletv-web.tgz
+    wget --no-check-certificate https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/transmission-1.75-appletv-web.tgz
     tar xzvf transmission-1.75-appletv-web.tgz
     cd transmission-1.75-appletv-web
     sudo mv transmission-daemon transmission-remote /usr/sbin/
@@ -514,6 +514,56 @@ Transmission can now be ran again:
 
 Transmission is access by pointing your browser at `http://appletv.local:9091/transmission/web/`
 
+
+
+
+
+
+
+
+# Starting Transmission Automatically
+
+These instructions only make sense if you have followed the installation instructions from above and have transmission
+installed in `/usr/sbin/`
+
+Skip the following step if you have followed the SABnzbd autostart instruction above, all it does it create the
+required directory.
+
+SSH into your Apple TV and running the following:
+
+    mkdir /Users/frontrow/Library/LaunchAgents/
+
+Right, here we go, this will only take a second.
+
+SSH into your Apple TV and run this:
+
+    nano -w /Users/frontrow/Library/LaunchAgents/transmission.plist
+
+Now copy and paste the following into the file:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" 
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+    <key>GroupName</key>
+    <string>frontrow</string>
+    <key>Label</key>
+    <string>org.m0k.transmission</string>
+    <key>ProgramArguments</key>
+    <array>
+    <string>transmission-daemon</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>ServiceDescription</key>
+    <string>transmission-daemon</string>
+    <key>UserName</key>
+    <string>frontrow</string>
+    </dict>
+    </plist>
+
+Save and exit. That should be you, restart and have a look.
 
 
 
