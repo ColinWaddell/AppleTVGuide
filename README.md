@@ -148,7 +148,7 @@ Finally, its time to get some colour!
 
 If you havent installed the NitoTV Smart installer please follow the previous section of these instructions.
 
-I realise that there is an automated installer for the composite plugin in Nito but it never worked for me so I have just simplified the instructions from http://wiki.awkwardtv.org/wiki/Composite
+I realise that there is an automated installer for the composite plugin in Nito but it never worked for me so I have just simplified the instructions from [AwkwardTV](http://wiki.awkwardtv.org/wiki/Composite)
 
 SSH into your Apple TV and do the following
 
@@ -165,3 +165,123 @@ For [NTSC](http://en.wikipedia.org/wiki/NTSC):
     sudo ./tvcomposite_ntsc.sh
 
 Restart your Apple TV and check it out.
+
+
+
+
+
+
+
+
+# Install Launcher
+
+Next thing to install is the XBMC/Boxee Launcher.
+
+SSH into your AppleTV and copy and paste the following commands into your terminal.
+
+    cd /tmp/    
+    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/Launcher-3.2.2-debug.run    
+    chmod +x Launcher-3.2.2-debug.run    
+    ./Launcher-3.2.2-debug.run
+
+and you should see…
+
+    Verifying archive integrity... All good.
+    Uncompressing Launcher 3.2.2-debug......
+    This installer must be run as root.
+    Please enter your password below to authorize as root.
+    In most cases, this password is "frontrow".
+    Password:
+    == Extracting XBMCLauncher.frappliance
+    XBMCLauncher.frappliance successfully installed.
+    Finder must be restarted in order to complete the installation.
+    Would you like to do this now? (Y/n) Y
+    == Restarting Finder
+
+
+
+
+
+# Housekeeping
+
+One thing before we go any further.
+
+Space on the Apple TVs primary partition is limited to 1G. I imagine if your going on to follow the next set of instructions to do with bittorrent and usenet, then your going to wanting easy access to the larger drive. Were going to run a few commands, they will create a dirctory on your larger drive called Downloads, and also create a link to this in your home directory.
+
+SSH in and run the following
+
+    cd /mnt/
+    sudo -s
+    mkdir Downloads
+    chown frontrow:frontrow Downloads
+    exit
+    cd ~
+    ln -s /mnt/Downloads Downloads
+
+There we go.
+
+
+
+
+
+
+# Install SAMBA
+
+Need to run a few commands here then add some info to a conf file. Instructions from awkwardtv http://wiki.awkwardtv.org/wiki/Enable_SAMBA_server
+
+SSH into your Apple TV and run the following:
+
+    sudo -s
+    cd /tmp
+    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/samba3_macports_bin.tar.bz2
+    tar -xvjpf samba3_macports_bin.tar.bz2 -C /
+    mkdir /mnt/op
+    ln -s /mnt/opt /opt
+    cp /opt/local/etc/samba3/smb.conf.sample /opt/local/etc/samba3/smb.conf
+    nano -w /opt/local/etc/samba3/smb.conf
+
+
+Now scroll down and find the following chunk:
+
+    [homes]
+    comment = Home Directories
+    browseable = no
+    writable = yes
+
+Now, I don't want to share this directory, I want to share my Downloads directory, so I'm going to change that to now say this:
+
+    [Downloads]
+    comment = Downloads
+    path = /mnt/Downloads
+    public = yes
+    writable = yes
+    printable = no
+
+Save and exit.
+
+The SAMBA passwords are different from the user login ones. Give the user frontrow a password:
+
+    sudo /opt/local/bin/smbpasswd -a frontrow
+
+Change some permissions:
+
+    sudo chown root:wheel /opt/local/sbin/smbd
+    sudo chmod 4555 /opt/local/sbin/smbd
+    sudo chown root:wheel /opt/local/sbin/nmbd
+    sudo chmod 4555 /opt/local/sbin/nmbd
+
+Last thing to do is get it setup to launch at boot:
+
+    sudo nano -w /etc/rc.local
+
+Scroll to the bottom and add the following text:
+
+    \# start the SAMBA service
+    /opt/local/sbin/smbd -c /opt/local/etc/samba3/smb.conf
+    /opt/local/sbin/nmbd -c /opt/local/etc/samba3/smb.conf
+
+Save, exit, restart.
+
+From a Mac, to access this share, open finder and either hit `cmd+K` or go to `Go→Connect to Server`
+
+In the server address box pop this in there: `smb://AppleTV.local/Downloads` hit Connect, and hopefully a window will pop up showing you the contents of your Downloads folder.
