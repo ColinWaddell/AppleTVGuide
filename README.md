@@ -1,3 +1,31 @@
+# About This Guide
+
+I wrote this guide a long long time ago. The way it's written really makes me cringe now (it's a bit chatty), and my
+grammar really needs a good going over. Other than that though, it's really helped a lot of people. I'm redesigning my
+personal website and wasn't too sure where to put this guide so I'm going to keep it maintained via GitHub.
+
+## Table Of Contents
+
+1.  [Introduction](#introduction)
+2.  [Do You Have A Composite TV?](#do-you-have-a-composite-tv)
+3.  [Patching the Apple TV](#patching-the-apple-tv)
+4.  [SSH Access](#ssh-access)
+5.  [Enabling Read/Write Support](#enabling-readwrite-support)
+6.  [Install NitoTV](#install-nitotv)
+7.  [NitoTV Smart Installer](#nitotv-smart-installer)
+8.  [Composite Output](#composite-output)
+9.  [Install Launcher](#install-launcher)
+10. [Housekeeping](#housekeeping)
+11. [Install SAMBA](#install-samba)
+12. [SABNZB Usenet Client](#sabnzb-usenet-client)
+13. [Starting SABnzbd Automatically](#starting-sabnzbd-automatically)
+14. [Transmission Bittorrent Client](#transmission-bittorrent-client)
+15. [Starting Transmission Automatically](#starting-transmission-automatically)
+
+
+
+
+
 # Introduction
 
 I plan on using this site to document all the steps it take to get me from a factory default Apple TV to something
@@ -129,7 +157,7 @@ This will restart Finder and provide the NitoTV menu.
 More details can be found at [The AwkwardTV Forums](http://plugins.awkwardtv.org/det.php?recordID=nitoTV) please check
 it out.
 
-![Nito Screenshot](https://raw.github.com/ColinWaddell/AppleTVGuide/master/readme_img/nito.jpg)
+![Nito Screenshot](https://raw.github.com/ColinWaddell/AppleTVGuide/master/readme_img/nito.png)
 
 
 
