@@ -394,7 +394,7 @@ To access SABNZB you just have to point your browser at `http://appletv.local:80
 
 
 
-# Starting SABnzbd Automatically on Boot
+# Starting SABnzbd Automatically
 
 This was a slight nightmare to get working. Started following this guide but it doesnt work. If you google about you’ll
 find a couple other methods to launch it, like using rc.local, they dont work either.
