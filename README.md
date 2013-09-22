@@ -283,8 +283,6 @@ SSH in and run the following
     cd ~
     ln -s /mnt/Downloads Downloads
 
-There we go.
-
 
 
 
