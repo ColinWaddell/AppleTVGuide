@@ -132,6 +132,36 @@ There have been a number of reports of people getting the ‘wrong permissions o
     sudo chmod u+s nitoHelper
 
 
-Running Smart Installer is as simple as getting your remote and pointing your Apple TV in the direction of Nito TV→Settings→Install Software→Smart Installer. Then let it do its thing.
+Running Smart Installer is as simple as getting your remote and pointing your Apple TV in the direction of `Nito TV→Settings→Install Software→Smart Installer`. Then let it do its thing.
 
 
+
+
+
+
+
+# Composite Output
+
+_The following instructions are only for people needing a compisite output from their Apple TV. Please ignore if your using the HDMI or component._
+
+Finally, its time to get some colour!
+
+If you havent installed the NitoTV Smart installer please follow the previous section of these instructions.
+
+I realise that there is an automated installer for the composite plugin in Nito but it never worked for me so I have just simplified the instructions from http://wiki.awkwardtv.org/wiki/Composite
+
+SSH into your Apple TV and do the following
+
+For [PAL](http://en.wikipedia.org/wiki/PAL):
+
+    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/tvcomposite_pal.sh
+    chmod +x tvcomposite_pal.sh
+    sudo ./tvcomposite_pal.sh
+
+For [NTSC](http://en.wikipedia.org/wiki/NTSC):
+
+    wget https://raw.github.com/ColinWaddell/AppleTVGuide/master/files/tvcomposite_ntsc.sh
+    chmod +x tvcomposite_ntsc.sh 
+    sudo ./tvcomposite_ntsc.sh
+
+Restart your Apple TV and check it out.
