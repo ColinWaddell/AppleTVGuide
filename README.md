@@ -118,18 +118,19 @@ This piece of software takes care of installing all the things you really need t
 
 From the [Nito Wiki](from http://wiki.awkwardtv.org/wiki/NitoTV)
 
-> "Once the smart installer finds the location to install from it will scan the AppleTV for any important missing kexts, frameworks or binaries (usb, udf, samba, bluetooth, dvdplayback etc) and install them in their proper location, taking care of any owners, permissions AND will add kexts necessary to load on startup to /etc/rc.local).
+> Once the smart installer finds the location to install from it will scan the AppleTV for any important missing kexts, frameworks or binaries (usb, udf, samba, bluetooth, dvdplayback etc) and install them in their proper location, taking care of any owners, permissions AND will add kexts necessary to load on startup to /etc/rc.local).
+> 
+> The smart installer will also take care of Turbo’s easy USB patching (not done prior to 0.2.5b9) A reboot will be required for this to take effect.
+> 
+> Last but not least, the Smart Installer will fix any problems with the /etc/rc.local files not created by the prior version (b8) and add the necessary kexts and the kextloader.
+> 
+> There have been a number of reports of people getting the ‘wrong permissions or owners to work properly’ screen while using the smart installer with Nito 0.2.7 and after. A good fix is to SSH into the AppleTV and run the following:
+> 
+>    cd /System/Library/CoreServices/Finder.app/
+>    Contents/PlugIns/nitoTV.frappliance/Contents/Resources/
+>    sudo chmod 755 nitoHelper
+>    sudo chmod u+s nitoHelper
 
-The smart installer will also take care of Turbo’s easy USB patching (not done prior to 0.2.5b9) A reboot will be required for this to take effect.
-
-Last but not least, the Smart Installer will fix any problems with the /etc/rc.local files not created by the prior version (b8) and add the necessary kexts and the kextloader.
-
-There have been a number of reports of people getting the ‘wrong permissions or owners to work properly’ screen while using the smart installer with Nito 0.2.7 and after. A good fix is to SSH into the AppleTV and run the following:
-
-    cd /System/Library/CoreServices/Finder.app/
-    Contents/PlugIns/nitoTV.frappliance/Contents/Resources/
-    sudo chmod 755 nitoHelper
-    sudo chmod u+s nitoHelper
 
 Running Smart Installer is as simple as getting your remote and pointing your Apple TV in the direction of Nito TV->Settings->Install Software->Smart Installer. Then let it do its thing."
 
