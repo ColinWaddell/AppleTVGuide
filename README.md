@@ -6,21 +6,21 @@ personal website and wasn't too sure where to put this guide so I'm going to kee
 
 ## Table Of Contents
 
-1.  [Introduction](#introduction)
-2.  [Do You Have A Composite TV?](#do-you-have-a-composite-tv)
-3.  [Patching the Apple TV](#patching-the-apple-tv)
-4.  [SSH Access](#ssh-access)
-5.  [Enabling Read/Write Support](#enabling-readwrite-support)
-6.  [Install NitoTV](#install-nitotv)
-7.  [NitoTV Smart Installer](#nitotv-smart-installer)
-8.  [Composite Output](#composite-output)
-9.  [Install Launcher](#install-launcher)
-10. [Housekeeping](#housekeeping)
-11. [Install SAMBA](#install-samba)
-12. [SABNZB Usenet Client](#sabnzb-usenet-client)
-13. [Starting SABnzbd Automatically](#starting-sabnzbd-automatically)
-14. [Transmission Bittorrent Client](#transmission-bittorrent-client)
-15. [Starting Transmission Automatically](#starting-transmission-automatically)
+> 1.  [Introduction](#introduction)
+> 2.  [Do You Have A Composite TV?](#do-you-have-a-composite-tv)
+> 3.  [Patching the Apple TV](#patching-the-apple-tv)
+> 4.  [SSH Access](#ssh-access)
+> 5.  [Enabling Read/Write Support](#enabling-readwrite-support)
+> 6.  [Install NitoTV](#install-nitotv)
+> 7.  [NitoTV Smart Installer](#nitotv-smart-installer)
+> 8.  [Composite Output](#composite-output)
+> 9.  [Install Launcher](#install-launcher)
+> 10. [Housekeeping](#housekeeping)
+> 11. [Install SAMBA](#install-samba)
+> 12. [SABNZB Usenet Client](#sabnzb-usenet-client)
+> 13. [Starting SABnzbd Automatically](#starting-sabnzbd-automatically)
+> 14. [Transmission Bittorrent Client](#transmission-bittorrent-client)
+> 15. [Starting Transmission Automatically](#starting-transmission-automatically)
 
 
 
