@@ -4,8 +4,6 @@ I wrote this guide a long long time ago. The way it's written really makes me cr
 grammar really needs a good going over. Other than that though, it's really helped a lot of people. I'm redesigning my
 personal website and wasn't too sure where to put this guide so I'm going to keep it maintained via GitHub.
 
-## Table Of Contents
-
 > 1.  [Introduction](#introduction)
 > 2.  [Do You Have A Composite TV?](#do-you-have-a-composite-tv)
 > 3.  [Patching the Apple TV](#patching-the-apple-tv)
