@@ -276,7 +276,7 @@ Last thing to do is get it setup to launch at boot:
 
 Scroll to the bottom and add the following text:
 
-    \# start the SAMBA service
+    # start the SAMBA service
     /opt/local/sbin/smbd -c /opt/local/etc/samba3/smb.conf
     /opt/local/sbin/nmbd -c /opt/local/etc/samba3/smb.conf
 
